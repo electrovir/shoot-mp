@@ -1,3 +1,5 @@
+import {assertWrap} from '@augment-vir/assert';
+import {createUuidV4} from '@augment-vir/common';
 import {
     MultiplayerConnectionState,
     type MultiplayerClientRooms,
@@ -11,6 +13,7 @@ import {
     ShootMpMultiplayerController,
 } from '../../data/game-state/multiplayer-controller.js';
 import {ipCacheKey, VirIpInput} from './vir-ip-input.element.js';
+import {VirRoomList} from './vir-room-list.element.js';
 
 export const VirGame = defineElementNoInputs({
     tagName: 'vir-game',
@@ -29,7 +32,7 @@ export const VirGame = defineElementNoInputs({
                 service: MultiplayerConnectionState.Disconnected,
                 room: MultiplayerConnectionState.Disconnected,
             } as ServiceAndRoomConnectionState,
-            controller: undefined as undefined | ShootMpMultiplayerController,
+            multiplayerController: undefined as undefined | ShootMpMultiplayerController,
         };
     },
     render({state, updateState}) {
@@ -59,6 +62,9 @@ export const VirGame = defineElementNoInputs({
                             window.localStorage.setItem(ipCacheKey, serviceIpAddress);
 
                             state.gameLoop.currentState.multiplayerController = controller;
+                            updateState({
+                                multiplayerController: controller,
+                            });
                         }
                     })}
                 ></${VirIpInput}>
@@ -69,7 +75,22 @@ export const VirGame = defineElementNoInputs({
             `;
         } else {
             return html`
-                Choose a room:
+                <${VirRoomList.assign({
+                    rooms: state.rooms,
+                })}
+                    ${listen(VirRoomList.events.createRoom, async (event) => {
+                        await assertWrap.isDefined(state.multiplayerController).joinOrCreateRoom({
+                            roomId: createUuidV4(),
+                            roomName: event.detail.roomName,
+                            roomPassword: event.detail.roomPassword,
+                        });
+                    })}
+                    ${listen(VirRoomList.events.joinRoom, async (event) => {
+                        await assertWrap
+                            .isDefined(state.multiplayerController)
+                            .joinOrCreateRoom(event.detail);
+                    })}
+                ></${VirRoomList}>
             `;
         }
     },

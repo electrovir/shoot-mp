@@ -19,35 +19,35 @@
         "build": "virmator frontend build",
         "compile": "virmator compile",
         "docs": "virmator docs",
-        "start": "virmator frontend",
+        "start": "virmator frontend --host",
         "test": "exit 0",
         "test:coverage": "npm run test coverage",
         "test:docs": "virmator docs check",
         "test:update": "npm test update"
     },
     "dependencies": {
-        "@augment-vir/assert": "^31.10.1",
-        "@augment-vir/common": "^31.10.1",
+        "@augment-vir/assert": "^31.10.2",
+        "@augment-vir/common": "^31.10.2",
         "@evir/common": "*",
-        "@game-vir/handle-input": "^10.0.1",
-        "@game-vir/multiplayer": "^10.0.1",
-        "element-vir": "^25.1.0",
+        "@game-vir/handle-input": "^11.0.1",
+        "@game-vir/multiplayer": "^11.0.1",
+        "element-vir": "^25.2.0",
         "input-device-handler": "^9.0.0",
         "is-ip": "^5.0.1",
         "url-vir": "^2.1.3",
         "vir-line": "^2.0.1",
-        "vira": "^25.1.0"
+        "vira": "^25.2.0"
     },
     "devDependencies": {
-        "@augment-vir/test": "^31.10.1",
+        "@augment-vir/test": "^31.10.2",
         "@web/dev-server-esbuild": "^1.0.4",
         "@web/test-runner": "^0.20.0",
         "@web/test-runner-commands": "^0.9.0",
         "@web/test-runner-playwright": "^0.11.0",
         "@web/test-runner-visual-regression": "^0.10.0",
         "istanbul-smart-text-reporter": "^1.1.5",
-        "typescript": "^5.8.2",
-        "vite": "^6.2.2"
+        "typescript": "^5.8.3",
+        "vite": "^6.2.5"
     },
     "engines": {
         "node": ">=22"

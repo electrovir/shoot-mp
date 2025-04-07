@@ -36,6 +36,8 @@ export type StateCallback = (selfId: Uuid) => {
     currentState: GameState;
 };
 
+export const maxPlayerCount = 2;
+
 export class ShootMpMultiplayerController extends MultiplayerController<GameAction> {
     public deferredConnectionPromise: DeferredPromise;
     public stateCallback: StateCallback | undefined;
@@ -56,7 +58,7 @@ export class ShootMpMultiplayerController extends MultiplayerController<GameActi
         super({
             listeners: {
                 frame: (actions) => {
-                    const clientId = this.clientId;
+                    const clientId = this.getClientId();
                     if (this.stateCallback && clientId) {
                         const {activeActions, currentState} = this.stateCallback(clientId);
                         performActions(actions, currentState);
@@ -66,8 +68,8 @@ export class ShootMpMultiplayerController extends MultiplayerController<GameActi
                 },
                 connectionUpdate: (state) => {
                     if (!deferredConnectionPromise.isSettled) {
-                        if (state.service === MultiplayerConnectionState.Error) {
-                            deferredConnectionPromise.reject('Failed to connect to the server.');
+                        if (state.service instanceof Error) {
+                            deferredConnectionPromise.reject(state.service);
                         } else if (state.service === MultiplayerConnectionState.Connected) {
                             deferredConnectionPromise.resolve();
                         }
@@ -75,12 +77,16 @@ export class ShootMpMultiplayerController extends MultiplayerController<GameActi
 
                     connectionCallback(state);
                 },
-                roomListUpdate(rooms) {
+                roomListUpdate: (rooms) => {
                     roomListUpdate(rooms);
+                },
+                acceptConnection: () => {
+                    return this.getAllClientIds().length < maxPlayerCount;
                 },
             },
             multiplayer: {
                 serviceOrigin,
+                roomUpdateInterval: {seconds: 1},
             },
         });
         this.deferredConnectionPromise = deferredConnectionPromise;

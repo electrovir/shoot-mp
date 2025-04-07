@@ -22,11 +22,11 @@
         "test": "exit 0"
     },
     "dependencies": {
-        "@augment-vir/test": "^31.10.1",
+        "@augment-vir/test": "^31.10.2",
         "@evir/common": "*",
-        "@game-vir/multiplayer-server": "^10.0.1",
+        "@game-vir/multiplayer-server": "^11.0.1",
         "tsx": "^4.19.3",
-        "typescript": "^5.8.2"
+        "typescript": "^5.8.3"
     },
     "engines": {
         "node": ">=22"
