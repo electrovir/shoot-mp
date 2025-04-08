@@ -3,11 +3,13 @@ import {InputDeviceHandler} from 'input-device-handler';
 import {VirLine, type VirLineStage} from 'vir-line';
 import {defaultPlayerBindings} from './default-actions-bindings.js';
 import {multiplayerStage} from './multiplayer.stage.js';
+import {renderStage} from './render.stage.js';
 
 const stages = [
     readRawInputStage,
     readBindingsStage,
     multiplayerStage,
+    renderStage,
 ] as const satisfies ReadonlyArray<Readonly<VirLineStage<any>>>;
 
 export function initGameLoop() {

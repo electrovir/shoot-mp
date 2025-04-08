@@ -24,7 +24,7 @@
     "dependencies": {
         "@augment-vir/test": "^31.10.2",
         "@evir/common": "*",
-        "@game-vir/multiplayer-server": "^11.0.1",
+        "@game-vir/multiplayer-server": "^11.0.2",
         "tsx": "^4.19.3",
         "typescript": "^5.8.3"
     },

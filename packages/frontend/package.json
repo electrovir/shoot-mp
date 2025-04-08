@@ -29,8 +29,8 @@
         "@augment-vir/assert": "^31.10.2",
         "@augment-vir/common": "^31.10.2",
         "@evir/common": "*",
-        "@game-vir/handle-input": "^11.0.1",
-        "@game-vir/multiplayer": "^11.0.1",
+        "@game-vir/handle-input": "^11.0.2",
+        "@game-vir/multiplayer": "^11.0.2",
         "element-vir": "^25.2.0",
         "input-device-handler": "^9.0.0",
         "is-ip": "^5.0.1",
@@ -46,6 +46,7 @@
         "@web/test-runner-playwright": "^0.11.0",
         "@web/test-runner-visual-regression": "^0.10.0",
         "istanbul-smart-text-reporter": "^1.1.5",
+        "type-fest": "^4.39.1",
         "typescript": "^5.8.3",
         "vite": "^6.2.5"
     },

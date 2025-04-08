@@ -10,12 +10,22 @@ export const defaultPlayerBindings: Readonly<PlayersBindingsMap> = {
                 direction: InputDirection.Positive,
                 inputName: 'button-ArrowUp',
             },
+            {
+                deviceKey: InputDeviceKey.Keyboard,
+                direction: InputDirection.Positive,
+                inputName: 'button-KeyW',
+            },
         ],
         [GameActionType.Down]: [
             {
                 deviceKey: InputDeviceKey.Keyboard,
                 direction: InputDirection.Positive,
                 inputName: 'button-ArrowDown',
+            },
+            {
+                deviceKey: InputDeviceKey.Keyboard,
+                direction: InputDirection.Positive,
+                inputName: 'button-KeyS',
             },
         ],
         [GameActionType.Left]: [
@@ -24,12 +34,22 @@ export const defaultPlayerBindings: Readonly<PlayersBindingsMap> = {
                 direction: InputDirection.Positive,
                 inputName: 'button-ArrowLeft',
             },
+            {
+                deviceKey: InputDeviceKey.Keyboard,
+                direction: InputDirection.Positive,
+                inputName: 'button-KeyA',
+            },
         ],
         [GameActionType.Right]: [
             {
                 deviceKey: InputDeviceKey.Keyboard,
                 direction: InputDirection.Positive,
                 inputName: 'button-ArrowRight',
+            },
+            {
+                deviceKey: InputDeviceKey.Keyboard,
+                direction: InputDirection.Positive,
+                inputName: 'button-KeyD',
             },
         ],
         [GameActionType.Enter]: [
@@ -58,6 +78,11 @@ export const defaultPlayerBindings: Readonly<PlayersBindingsMap> = {
                 direction: InputDirection.Positive,
                 inputName: 'button-ArrowLeft',
             },
+            {
+                deviceKey: InputDeviceKey.Keyboard,
+                direction: InputDirection.Positive,
+                inputName: 'button-KeyA',
+            },
         ],
         [GameActionType.ShipRight]: [
             {
@@ -65,12 +90,22 @@ export const defaultPlayerBindings: Readonly<PlayersBindingsMap> = {
                 direction: InputDirection.Positive,
                 inputName: 'button-ArrowRight',
             },
+            {
+                deviceKey: InputDeviceKey.Keyboard,
+                direction: InputDirection.Positive,
+                inputName: 'button-KeyD',
+            },
         ],
         [GameActionType.ShipShoot]: [
             {
                 deviceKey: InputDeviceKey.Keyboard,
                 direction: InputDirection.Positive,
                 inputName: 'button-Enter',
+            },
+            {
+                deviceKey: InputDeviceKey.Keyboard,
+                direction: InputDirection.Positive,
+                inputName: 'button-Space',
             },
             {
                 deviceKey: InputDeviceKey.Keyboard,
