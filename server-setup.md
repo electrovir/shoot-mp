@@ -52,6 +52,7 @@
     - https://docs.bitnami.com/general/how-to/generate-install-lets-encrypt-ssl/
 18. Disable all default `.conf` files in `/opt/bitnami/nginx/conf/bitnami/` and `/opt/bitnami/nginx/conf/server_blocks/` by adding `.disabled` to the end of them.
 19. Follow the "Setup Nginx with HTTPS" steps from https://electrovir.com/2024-12-30-nginx-pi/#setup-nginx-with-https but use a self signed certificate, use the certificates generated in `/opt/bitnami/nginx/conf` by step 17.
+    1. remove the `dhparams.pem` line
 20. Restart nginx with `sudo /opt/bitnami/ctlscript.sh restart nginx`.
 21. See any nginx errors with `cat /opt/bitnami/nginx/logs/error.log`
 22. Install nvm: https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating.

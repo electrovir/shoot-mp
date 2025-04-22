@@ -12,5 +12,6 @@ module.exports = {
         'ctlscript',
         'autoremove',
         'bncert',
+        'dhparams',
     ],
 };

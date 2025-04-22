@@ -12,7 +12,7 @@ import {
     type MultiplayerClientRooms,
     type ServiceAndRoomConnectionState,
 } from '@game-vir/multiplayer';
-import {RequireExactlyOne} from 'type-fest';
+import {type RequireExactlyOne} from 'type-fest';
 import {buildUrl} from 'url-vir';
 import {GameActionType, performActions, type GameAction} from './game-action.js';
 import {serializeGameState, type GameState} from './game-state.js';
@@ -107,6 +107,11 @@ export class ShootMpMultiplayerController extends MultiplayerController<GameActi
                 roomUpdateInterval: {
                     seconds: 1,
                 },
+                stunServerUrls: [
+                    'stun.cloudflare.com:3478',
+                    // cspell:ignore stunserver stunprotocol
+                    'stunserver2024.stunprotocol.org',
+                ],
             },
         });
         this.deferredConnectionPromise = deferredConnectionPromise;
