@@ -7,7 +7,7 @@ const config = await readConfig();
 
 const {host, port} = await startMultiplayerServer({
     port: defaultMultiplayerPort,
-    host: '0.0.0.0',
+    host: 'localhost',
     backendOrigin: config?.backend,
     frontendOrigin: config?.frontend,
 });
