@@ -1,3 +1,4 @@
+import {assert} from '@augment-vir/assert';
 import {
     DeferredPromise,
     getObjectTypedKeys,
@@ -11,17 +12,23 @@ import {
     type MultiplayerClientRooms,
     type ServiceAndRoomConnectionState,
 } from '@game-vir/multiplayer';
+import {RequireExactlyOne} from 'type-fest';
 import {buildUrl} from 'url-vir';
 import {GameActionType, performActions, type GameAction} from './game-action.js';
 import {serializeGameState, type GameState} from './game-state.js';
 
+export type MultiplayerControllerAddress = RequireExactlyOne<{
+    ipAddress: string;
+    origin: string;
+}>;
+
 export async function createMultiplayerController(
-    ipAddress: string,
+    address: MultiplayerControllerAddress,
     connectionCallback: (state: ServiceAndRoomConnectionState) => void,
     roomListUpdate: (rooms: Readonly<MultiplayerClientRooms>) => void,
 ): Promise<ShootMpMultiplayerController> {
     const controller = new ShootMpMultiplayerController(
-        ipAddress,
+        address,
         connectionCallback,
         roomListUpdate,
     );
@@ -48,15 +55,18 @@ export class ShootMpMultiplayerController extends MultiplayerController<GameActi
     private initializedMemberClients: Record<Uuid, boolean> = {};
 
     constructor(
-        hostname: string,
+        address: Readonly<MultiplayerControllerAddress>,
         connectionCallback: (state: ServiceAndRoomConnectionState) => void,
         roomListUpdate: (rooms: Readonly<MultiplayerClientRooms>) => void,
     ) {
-        const backendOrigin = buildUrl(hostname, {
-            protocol: 'http',
-            hostname: hostname,
-            port: defaultMultiplayerPort,
-        }).origin;
+        const backendOrigin: string | undefined = address.ipAddress
+            ? buildUrl(address.ipAddress, {
+                  protocol: 'http',
+                  port: defaultMultiplayerPort,
+              }).origin
+            : address.origin;
+
+        assert.isDefined(backendOrigin);
 
         const deferredConnectionPromise = new DeferredPromise();
 

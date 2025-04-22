@@ -7,11 +7,13 @@ import {
 } from '@game-vir/multiplayer';
 import {css, defineElementNoInputs, html, listen} from 'element-vir';
 import {isIPv4} from 'is-ip';
+import {LoaderAnimated24Icon, ViraIcon} from 'vira';
 import {initGameLoop} from '../../data/game-state/game-loop.js';
 import {
     createMultiplayerController,
     type ShootMpMultiplayerController,
 } from '../../data/game-state/multiplayer-controller.js';
+import {globalConfig} from '../../data/global-data.js';
 import {VirGame} from './vir-game.element.js';
 import {ipCacheKey, VirIpInput} from './vir-ip-input.element.js';
 import {VirRoomList} from './vir-room-list.element.js';
@@ -34,6 +36,7 @@ export const VirApp = defineElementNoInputs({
     state() {
         return {
             serviceIpAddress: window.localStorage.getItem(ipCacheKey) || '',
+            prodOrigin: globalConfig.prodOrigin,
             gameLoop: initGameLoop(),
             ipErrorMessage: '',
             rooms: {} as Readonly<MultiplayerClientRooms>,
@@ -44,40 +47,68 @@ export const VirApp = defineElementNoInputs({
             multiplayerController: undefined as undefined | ShootMpMultiplayerController,
         };
     },
+    init({state, updateState}) {
+        if (state.prodOrigin) {
+            void createMultiplayerController(
+                {
+                    origin: state.prodOrigin,
+                },
+                (connectionState) => {
+                    updateState({
+                        connectionState,
+                    });
+                },
+                (rooms) => {
+                    updateState({rooms});
+                },
+            ).then((controller) => {
+                state.gameLoop.currentState.multiplayerController = controller;
+                updateState({
+                    multiplayerController: controller,
+                });
+            });
+        }
+    },
     render({state, updateState}) {
         if (state.connectionState.service !== MultiplayerConnectionState.Connected) {
-            return html`
-                <${VirIpInput.assign({
-                    errorMessage: state.ipErrorMessage,
-                    ipAddress: state.serviceIpAddress,
-                    connected: false,
-                })}
-                    ${listen(VirIpInput.events.ipChange, async (event) => {
-                        const serviceIpAddress = event.detail;
-                        updateState({serviceIpAddress});
-
-                        if (isIPv4(serviceIpAddress)) {
-                            const controller = await createMultiplayerController(
-                                serviceIpAddress,
-                                (connectionState) => {
-                                    updateState({
-                                        connectionState,
-                                    });
-                                },
-                                (rooms) => {
-                                    updateState({rooms});
-                                },
-                            );
-                            window.localStorage.setItem(ipCacheKey, serviceIpAddress);
-
-                            state.gameLoop.currentState.multiplayerController = controller;
-                            updateState({
-                                multiplayerController: controller,
-                            });
-                        }
+            if (state.prodOrigin) {
+                return html`
+                    <${ViraIcon.assign({icon: LoaderAnimated24Icon})}></${ViraIcon}>
+                `;
+            } else {
+                return html`
+                    <${VirIpInput.assign({
+                        errorMessage: state.ipErrorMessage,
+                        ipAddress: state.serviceIpAddress,
+                        connected: false,
                     })}
-                ></${VirIpInput}>
-            `;
+                        ${listen(VirIpInput.events.ipChange, async (event) => {
+                            const serviceIpAddress = event.detail;
+                            updateState({serviceIpAddress});
+
+                            if (isIPv4(serviceIpAddress)) {
+                                const controller = await createMultiplayerController(
+                                    {ipAddress: serviceIpAddress},
+                                    (connectionState) => {
+                                        updateState({
+                                            connectionState,
+                                        });
+                                    },
+                                    (rooms) => {
+                                        updateState({rooms});
+                                    },
+                                );
+                                window.localStorage.setItem(ipCacheKey, serviceIpAddress);
+
+                                state.gameLoop.currentState.multiplayerController = controller;
+                                updateState({
+                                    multiplayerController: controller,
+                                });
+                            }
+                        })}
+                    ></${VirIpInput}>
+                `;
+            }
         } else if (state.connectionState.room === MultiplayerConnectionState.Connected) {
             return html`
                 <${VirGame.assign({

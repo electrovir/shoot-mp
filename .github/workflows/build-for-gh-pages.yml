@@ -23,7 +23,7 @@ jobs:
             - name: build
               run: |
                   npm ci
-                  npm run build:frontend
+                  CI=true npm run build:frontend
             - uses: JamesIves/github-pages-deploy-action@v4.6.3
               with:
                   branch: 'gh-pages'
