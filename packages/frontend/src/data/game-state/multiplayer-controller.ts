@@ -52,7 +52,7 @@ export class ShootMpMultiplayerController extends MultiplayerController<GameActi
         connectionCallback: (state: ServiceAndRoomConnectionState) => void,
         roomListUpdate: (rooms: Readonly<MultiplayerClientRooms>) => void,
     ) {
-        const serviceOrigin = buildUrl(hostname, {
+        const backendOrigin = buildUrl(hostname, {
             protocol: 'http',
             hostname: hostname,
             port: defaultMultiplayerPort,
@@ -93,7 +93,7 @@ export class ShootMpMultiplayerController extends MultiplayerController<GameActi
                 },
             },
             multiplayer: {
-                serviceOrigin,
+                backendOrigin,
                 roomUpdateInterval: {
                     seconds: 1,
                 },

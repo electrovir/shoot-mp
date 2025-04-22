@@ -1,0 +1,1 @@
+- add env var / secret to GitHub Actions for backend URL and read it in the Vite config (and insert it into the frontend at build)
