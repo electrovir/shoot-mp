@@ -8,5 +8,9 @@ module.exports = {
     words: [
         ...baseConfig.words,
         'vmin',
+        'bitnami',
+        'ctlscript',
+        'autoremove',
+        'bncert',
     ],
 };

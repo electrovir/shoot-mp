@@ -48,13 +48,13 @@ export class ShootMpMultiplayerController extends MultiplayerController<GameActi
     private initializedMemberClients: Record<Uuid, boolean> = {};
 
     constructor(
-        ipAddress: string,
+        hostname: string,
         connectionCallback: (state: ServiceAndRoomConnectionState) => void,
         roomListUpdate: (rooms: Readonly<MultiplayerClientRooms>) => void,
     ) {
-        const serviceOrigin = buildUrl(ipAddress, {
+        const serviceOrigin = buildUrl(hostname, {
             protocol: 'http',
-            hostname: ipAddress,
+            hostname: hostname,
             port: defaultMultiplayerPort,
         }).origin;
 

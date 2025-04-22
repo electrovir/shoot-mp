@@ -18,7 +18,7 @@
     "scripts": {
         "compile": "virmator compile",
         "dev": "tsx --watch src/index.ts",
-        "start": "tsx src/index.ts",
+        "start": "node dist/index.js",
         "test": "exit 0"
     },
     "dependencies": {

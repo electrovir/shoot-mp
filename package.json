@@ -1,6 +1,5 @@
 {
-    "name": "shoot-mp",
-    "version": "0.0.0",
+    "name": "@evir/shoot-mp",
     "private": true,
     "homepage": "https://github.com/electrovir/shoot-mp",
     "bugs": {
@@ -20,6 +19,8 @@
         "packages/*"
     ],
     "scripts": {
+        "build:backend": "npm run compile && tsx node_modules/@augment-vir/node/src/scripts/fix-src-imports.script.ts",
+        "build:frontend": "npm run build --workspace @evir/frontend",
         "compile": "virmator compile",
         "dev": "concurrently --colors --kill-others-on-fail -c blue,green --names frontend,backend \"npm start --workspace @evir/frontend\" \"npm run dev --workspace @evir/backend\"",
         "format": "virmator format",
