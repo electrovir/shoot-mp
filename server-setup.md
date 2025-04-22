@@ -51,13 +51,14 @@
     - `sudo /opt/bitnami/bncert-tool`
     - https://docs.bitnami.com/general/how-to/generate-install-lets-encrypt-ssl/
 18. Disable all default `.conf` files in `/opt/bitnami/nginx/conf/bitnami/` and `/opt/bitnami/nginx/conf/server_blocks/` by adding `.disabled` to the end of them.
-19. Restart nginx with `sudo /opt/bitnami/ctlscript.sh restart nginx`.
-20. Install nvm: https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating.
-21. Run `source ~/.bashrc`.
-22. Run `nvm install 22` (or whatever is the latest LTS version that we support).
-23. Run `npm i -g npm@latest`.
-24. Clone the repo into `repos`.
-25. Setup pm2:
+19. Follow the "Setup Nginx with HTTPS" steps from https://electrovir.com/2024-12-30-nginx-pi/#setup-nginx-with-https but use a self signed certificate, use the certificates generated in `/opt/bitnami/nginx/conf` by step 17.
+20. Restart nginx with `sudo /opt/bitnami/ctlscript.sh restart nginx`.
+21. Install nvm: https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating.
+22. Run `source ~/.bashrc`.
+23. Run `nvm install 22` (or whatever is the latest LTS version that we support).
+24. Run `npm i -g npm@latest`.
+25. Clone the repo into `repos`.
+26. Setup pm2:
     1. Run `npm i -g pm2`.
     2. Run `pm2 startup`.
     3. Run the command that step 2 tells you to run.
