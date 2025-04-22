@@ -1,4 +1,4 @@
-import {InputDirection, PlayersBindingsMap} from '@game-vir/handle-input';
+import {InputDirection, type PlayersBindingsMap} from '@game-vir/handle-input';
 import {InputDeviceKey} from 'input-device-handler';
 import {GameActionType} from './game-action.js';
 

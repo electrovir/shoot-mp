@@ -1,7 +1,6 @@
-import {PartialWithUndefined, Uuid} from '@augment-vir/common';
+import {type PartialWithUndefined, type Uuid} from '@augment-vir/common';
 import {VirLineStage} from 'vir-line';
-import type {GameEntity, GameState} from './game-state.js';
-import {EntityRenderParams} from './game-state.js';
+import {type EntityRenderParams, type GameEntity, type GameState} from './game-state.js';
 
 export type RenderStageState = PartialWithUndefined<{
     gameState: GameState;

@@ -1,12 +1,12 @@
-import {arrayToObject, clamp, Coords, round, type Dimensions} from '@augment-vir/common';
+import {arrayToObject, clamp, type Coords, type Dimensions, round} from '@augment-vir/common';
 import {isColliding} from '../collision.js';
 import {
-    EntityConstructorParams,
-    EntityRenderParams,
+    type EntityConstructorParams,
+    type EntityRenderParams,
+    type EntityUpdateParams,
     gameBoardSize,
     GameEntity,
-    RegisteredEntities,
-    type EntityUpdateParams,
+    type RegisteredEntities,
     type SerializedGameEntity,
 } from './game-state.js';
 

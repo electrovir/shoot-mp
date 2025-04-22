@@ -10,7 +10,7 @@ import {isIPv4} from 'is-ip';
 import {initGameLoop} from '../../data/game-state/game-loop.js';
 import {
     createMultiplayerController,
-    ShootMpMultiplayerController,
+    type ShootMpMultiplayerController,
 } from '../../data/game-state/multiplayer-controller.js';
 import {VirGame} from './vir-game.element.js';
 import {ipCacheKey, VirIpInput} from './vir-ip-input.element.js';

@@ -13,8 +13,7 @@ import {
 } from '@game-vir/multiplayer';
 import {buildUrl} from 'url-vir';
 import {GameActionType, performActions, type GameAction} from './game-action.js';
-import type {GameState} from './game-state.js';
-import {serializeGameState} from './game-state.js';
+import {serializeGameState, type GameState} from './game-state.js';
 
 export async function createMultiplayerController(
     ipAddress: string,

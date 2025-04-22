@@ -1,4 +1,4 @@
-import type {GameEntity} from './game-state/game-state.js';
+import {type GameEntity} from './game-state/game-state.js';
 
 export function isColliding(
     a: Readonly<Pick<GameEntity, 'dimensions' | 'position'>>,

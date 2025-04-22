@@ -1,11 +1,10 @@
 import {getObjectTypedKeys, type PartialWithUndefined, type Uuid} from '@augment-vir/common';
-import type {ReadBindingsStageState} from '@game-vir/handle-input';
+import {type ReadBindingsStageState} from '@game-vir/handle-input';
 import {VirLineStage} from 'vir-line';
 import {registeredEntities} from './entities.js';
-import {GameAction, GameActionType} from './game-action.js';
-import type {GameState} from './game-state.js';
-import {startingGameState} from './game-state.js';
-import {ShootMpMultiplayerController} from './multiplayer-controller.js';
+import {type GameAction, type GameActionType} from './game-action.js';
+import {type GameState, startingGameState} from './game-state.js';
+import {type ShootMpMultiplayerController} from './multiplayer-controller.js';
 
 export type MultiplayerStageState = PartialWithUndefined<{
     gameState: GameState;

@@ -1,7 +1,7 @@
 import {assertWrap} from '@augment-vir/assert';
 import {type Uuid} from '@augment-vir/common';
 import {classMap, css, defineElement, html, nothing, onDomCreated} from 'element-vir';
-import type {GameLoop} from '../../data/game-state/game-loop.js';
+import {type GameLoop} from '../../data/game-state/game-loop.js';
 import {gameBoardSize} from '../../data/game-state/game-state.js';
 
 export const VirGame = defineElement<{

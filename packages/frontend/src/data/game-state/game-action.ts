@@ -6,19 +6,19 @@ import {
     log,
     omitObjectKeys,
     pickObjectKeys,
-    Uuid,
-    Values,
+    type Uuid,
+    type Values,
 } from '@augment-vir/common';
 import {MenuNavBinding} from '@game-vir/handle-input';
 import {PlayerEntity} from './entities.js';
 import {
-    EntityUpdateParams,
-    SerializedGameState,
     type EntityConstructorParams,
+    type EntityUpdateParams,
     type GameEntity,
     type GameState,
     type RegisteredEntities,
     type SerializedGameEntity,
+    type SerializedGameState,
 } from './game-state.js';
 
 export const GameActionType = {

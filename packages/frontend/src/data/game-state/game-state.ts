@@ -1,11 +1,11 @@
 import {
-    Coords,
-    Uuid,
     pickObjectKeys,
+    type Coords,
     type Dimensions,
     type JsonCompatibleValue,
+    type Uuid,
 } from '@augment-vir/common';
-import {Constructor} from 'type-fest';
+import {type Constructor} from 'type-fest';
 
 export type RegisteredEntities = Record<string, Constructor<GameEntity>>;
 

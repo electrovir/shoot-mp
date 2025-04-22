@@ -1,5 +1,5 @@
 import {getObjectTypedValues, type Uuid} from '@augment-vir/common';
-import {MultiplayerClientRooms} from '@game-vir/multiplayer';
+import {type MultiplayerClientRooms} from '@game-vir/multiplayer';
 import {css, defineElement, defineElementEvent, html, listen, renderIf} from 'element-vir';
 import {ViraButton, ViraButtonStyle, ViraInput} from 'vira';
 import {maxPlayerCount} from '../../data/game-state/multiplayer-controller.js';
