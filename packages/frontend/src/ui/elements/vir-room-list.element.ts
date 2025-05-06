@@ -1,7 +1,7 @@
 import {getObjectTypedValues, type Uuid} from '@augment-vir/common';
 import {type MultiplayerClientRooms} from '@game-vir/multiplayer';
 import {css, defineElement, defineElementEvent, html, listen, renderIf} from 'element-vir';
-import {ViraButton, ViraButtonStyle, ViraInput} from 'vira';
+import {LoaderAnimated24Icon, ViraButton, ViraButtonStyle, ViraInput} from 'vira';
 import {maxPlayerCount} from '../../data/game-state/multiplayer-controller.js';
 
 export const VirRoomList = defineElement<{rooms: Readonly<MultiplayerClientRooms>}>()({
@@ -31,6 +31,7 @@ export const VirRoomList = defineElement<{rooms: Readonly<MultiplayerClientRooms
     state() {
         return {
             creatingRoom: false,
+            isLoading: false,
             newRoomName: '',
             newRoomPassword: '',
             passwordEntries: {} as Record<Uuid, string>,
@@ -43,6 +44,7 @@ export const VirRoomList = defineElement<{rooms: Readonly<MultiplayerClientRooms
                     <${ViraInput.assign({
                         placeholder: 'Room Name',
                         disableBrowserHelps: true,
+                        disabled: state.isLoading,
                         value: state.newRoomName,
                     })}
                         ${listen(ViraInput.events.valueChange, (event) => {
@@ -53,6 +55,7 @@ export const VirRoomList = defineElement<{rooms: Readonly<MultiplayerClientRooms
                     ></${ViraInput}>
                     <${ViraInput.assign({
                         placeholder: 'password (empty for none)',
+                        disabled: state.isLoading,
                         value: state.newRoomPassword,
                     })}
                         ${listen(ViraInput.events.valueChange, (event) => {
@@ -64,6 +67,7 @@ export const VirRoomList = defineElement<{rooms: Readonly<MultiplayerClientRooms
                     <div class="buttons">
                         <${ViraButton.assign({
                             text: 'Cancel',
+                            disabled: state.isLoading,
                             buttonStyle: ViraButtonStyle.Outline,
                         })}
                             ${listen('click', () => {
@@ -72,8 +76,11 @@ export const VirRoomList = defineElement<{rooms: Readonly<MultiplayerClientRooms
                         ></${ViraButton}>
                         <${ViraButton.assign({
                             text: 'Create room',
+                            disabled: state.isLoading,
+                            icon: state.isLoading ? LoaderAnimated24Icon : undefined,
                         })}
                             ${listen('click', () => {
+                                updateState({isLoading: true});
                                 dispatch(
                                     new events.createRoom({
                                         roomName: state.newRoomName,
