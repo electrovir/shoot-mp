@@ -50,7 +50,7 @@ export abstract class GameEntity {
     public entities: GameEntity[] = [];
 
     public playerId: Uuid;
-    public constructor({playerId}: Readonly<Pick<EntityConstructorParams, 'playerId'>>) {
+    constructor({playerId}: Readonly<Pick<EntityConstructorParams, 'playerId'>>) {
         this.playerId = playerId;
     }
     public destroyed = false as boolean;

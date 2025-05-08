@@ -22,16 +22,16 @@
         "test": "exit 0"
     },
     "dependencies": {
-        "@augment-vir/common": "^31.14.1",
-        "@augment-vir/test": "^31.14.1",
+        "@augment-vir/common": "^31.17.1",
+        "@augment-vir/test": "^31.17.1",
         "@evir/common": "*",
-        "@game-vir/multiplayer-server": "^11.1.2",
+        "@game-vir/multiplayer-server": "^14.6.1",
         "object-shape-tester": "^5.1.5",
-        "tsx": "^4.19.3",
+        "tsx": "^4.19.4",
         "typescript": "^5.8.3"
     },
     "devDependencies": {
-        "@types/node": "^22.14.1"
+        "@types/node": "^22.15.17"
     },
     "engines": {
         "node": ">=22"

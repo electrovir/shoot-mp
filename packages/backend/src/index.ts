@@ -7,10 +7,12 @@ const config = await readConfig();
 const isDev = import.meta.filename.endsWith('.ts');
 
 const {host, port} = await startMultiplayerServer({
+    games: {
+        byId: config,
+    },
     port: defaultMultiplayerPort,
     host: '0.0.0.0',
-    backendOrigin: config?.backend,
-    frontendOrigin: isDev ? undefined : config?.frontend,
+    backendOrigin: config.backend,
 });
 
 log.faint(`listening on ${host}:${port}`);

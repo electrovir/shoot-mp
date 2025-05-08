@@ -71,6 +71,7 @@ export class ShootMpMultiplayerController extends MultiplayerController<GameActi
         const deferredConnectionPromise = new DeferredPromise();
 
         super({
+            gameId: 'shoot-mp',
             listeners: {
                 frame: (actions) => {
                     const clientId = this.getClientId();
