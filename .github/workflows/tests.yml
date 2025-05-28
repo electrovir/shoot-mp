@@ -18,6 +18,11 @@ jobs:
             matrix:
                 os: [macos-latest, ubuntu-latest, windows-latest]
         steps:
+            # Fix "Firefox is unable to launch if the $HOME folder isn't owned by the current user"
+            # on Ubuntu with the Playwright container.
+            - name: Set HOME for Ubuntu
+              if: runner.os == 'Linux'
+              run: echo "HOME=/root" >> $GITHUB_ENV
             - uses: actions/checkout@v4.1.7
             - uses: actions/setup-node@v4.0.3
               with:
