@@ -12,6 +12,7 @@ concurrency:
 jobs:
     tests:
         runs-on: ${{ matrix.os }}
+        container: ${{ matrix.os == 'ubuntu-latest' && 'mcr.microsoft.com/playwright:v1.52.0' || null }}
         strategy:
             fail-fast: false
             matrix:
